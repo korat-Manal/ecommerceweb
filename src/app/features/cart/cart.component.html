@@ -1,0 +1,54 @@
+<div class="height" style="height:181px"></div>
+<div class="cart-container" *ngIf="cartItems.length > 0; else emptyCart">
+    <table class="cart-table" >
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr *ngFor="let item of cartItems; let i = index">
+                <td class="product-info">
+                    <button class="remove-btn" (click)="removeItem(i)">&times;</button>
+                    <img [src]="item.image"  class="product-img">
+                    {{item.name}}
+                </td>
+                <td>{{item.price}}</td>
+                <td>
+                    <div class="number-input">
+                        <span>{{item.quantity}}</span>
+                        <button class="arrow-up" (click)="increaseQuantity(i)"><i class="fa-solid fa-angle-up"></i></button>
+                        <button class="arrow-down" (click)="decreaseQuantity(i)"><i class="fa-solid fa-angle-down"></i></button>
+                    </div>
+                </td>
+                <td>${{ getSubTotal(item) }}</td>
+            </tr>
+    </table>
+
+    <div class="cart-actions flex">
+        <button class="return-shop" routerLink="/home">Return To Shop</button>
+        <button class="update-cart" (click)="updateCart()">Update Cart</button>
+    </div>
+
+    <div class="cart-summary">
+        <h3>Cart Total</h3>
+        <p class="flex">Subtotal: <span>${{ subTotalPrice }}</span></p>
+        <p class="flex">Shipping: 
+                                    <span *ngIf="shippingCost === 0">Free</span>
+                                    <span *ngIf="shippingCost > 0"> ${{ shippingCost }} </span>
+        </p>
+        <p class="flex">Total: <span> ${{ grandTotalPrice }} </span></p>
+        <button class="checkout-btn" (click)="proceedToCheckout()">Proceed to checkout</button>
+    </div>
+</div>
+<ng-template #emptyCart>
+    <div class="empty-cart-container">
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything yet!</p>
+        <button class="shop-now-btn" routerLink="/home">Start Shopping</button>
+    </div>
+</ng-template>
+

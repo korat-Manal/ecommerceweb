@@ -1,0 +1,94 @@
+<div>
+  <app-nav-bar></app-nav-bar>
+</div>
+<div class="height" style="height: 143px"></div>
+<div class="contact-container">
+  <div class="contact-info">
+    <div class="info-box">
+      <div class="icon"><i class="fas fa-phone-alt"></i></div>
+      <h3>Call To Us</h3>
+      <p>We are available 24/7, 7 days a week.</p>
+      <p>Phone: +8801611112222</p>
+    </div>
+
+    <div class="info-box">
+      <div class="icon"><i class="fas fa-envelope"></i></div>
+      <h3>Write To Us</h3>
+      <p>Fill out our form and we will contact you within 24 hours.</p>
+      <p>Emails: customer&#64;exclusive.com</p>
+      <p>Emails: support&#64;exclusive.com</p>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <form [formGroup]="currentMessage">
+      <div class="form-group">
+        <div class="form-group-name">
+          <input
+            type="text"
+            placeholder="Your Name * "
+            required
+            formControlName="name"
+          />
+          @if (currentMessage.get('name')?.touched &&
+          currentMessage.get('name')?.errors?.['required']){
+          <div class="text-danger">name required</div>
+          }
+        </div>
+        <div class="form-goup-email">
+          <input
+            type="email"
+            placeholder="Your Email *"
+            required
+            formControlName="email"
+          />
+          @if(currentMessage.get('email')?.touched &&
+          currentMessage.get('email')?.invalid){
+          <div class="text-danger">
+            @if(currentMessage.get('email')?.errors?.['required']){ email
+            required } @if(currentMessage.get('email')?.errors?.['email']){
+            email invalid }
+          </div>
+          }
+        </div>
+        <div class="form-goup-phone">
+          <input
+            type="tel"
+            placeholder="Your Phone *"
+            required
+            formControlName="phone"
+          />
+          @if(currentMessage.get('phone')?.touched && currentMessage.get('phone')?.invalid){
+            <div class="text-danger">
+              @if(currentMessage.get('phone')?.errors?.['required']){
+                phone number required
+              }
+              @if(currentMessage.get('phone')?.errors?.['minlength']){
+                invalid number
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <textarea
+        placeholder="Your Message"
+        required
+        formControlName="message"
+      ></textarea>
+      @if(currentMessage.get('message')?.touched && currentMessage.get('message')?.invalid){
+        <div class="text-danger">
+          @if(currentMessage.get('message')?.errors?.['required']){
+            message required
+          }
+        </div>
+      }
+      <div class="button-contanier">
+        <button type="submit" (click)="onSubmit()">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div>
+  <app-footer></app-footer>
+</div>

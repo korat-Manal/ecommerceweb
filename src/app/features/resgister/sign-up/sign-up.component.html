@@ -1,0 +1,61 @@
+<div>
+    <app-nav-bar/>
+</div>
+<div class="sign-up-section flex">
+    <img src="/img4.png">
+    <div class="signup-container">
+        <h2>Create an account</h2>
+        <p>Enter your details below</p>
+      
+        <form [formGroup] ="signUpForm">
+          <input type="text" placeholder="Name" name="name" required formControlName="name">
+          @if(signUpForm.get('name')?.touched){
+            <div class="text-danger">
+              @if (signUpForm.get('name')?.errors?.['required']) {
+                *name is required
+              } 
+              </div>
+          }
+          <input type="email" placeholder="Email or Phone Number" required formControlName="email">
+          @if (signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid) {
+            <div class="text-danger">
+              @if (signUpForm.get('email')?.errors?.['required']) {
+                *Email is required
+              }
+              @if (signUpForm.get('email')?.errors?.['email']) {
+                *Invalid email format
+              }
+            </div>
+          }
+          <input type="password" placeholder="Password" required formControlName="password">
+          @if (signUpForm.get('password')?.touched && signUpForm.get('password')?.invalid) {
+            <div class="text-danger">
+              @if (signUpForm.get('password')?.errors?.['required']) {
+                Password is required
+              }
+              @if (signUpForm.get('password')?.errors?.['minlength']) {
+                Password must be at least 6 characters
+              }
+            </div>
+          }
+      
+          <button class="create-account-btn" (click)="signUp()">Create Account</button>
+      
+          <div class="google-signup">
+            <button class="google-btn">
+              <img src="/img5.png" alt="Google Logo">
+              Sign up with Google
+            </button>
+          </div>
+
+          <!-- <div id="google-btn"></div> -->
+      
+          <p  class="login-text">Already have an account? <a routerLink="/login">Log in</a></p>
+        </form>
+      </div> 
+</div>
+
+<div>
+    <app-footer></app-footer>
+</div>
+        

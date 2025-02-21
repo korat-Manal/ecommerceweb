@@ -1,1 +1,150 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+@font-face {
+  font-family: "Poppins";
+  src: url("/Poppins/Poppins-Regular.ttf") format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+body {
+  font-family: Poppins;
+}
+p {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 24px;
+}
+h1 {
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 48px;
+}
+h2 {
+  font-weight: 600;
+}
+a{
+  color: black;
+}
+
+/* **************** */
+.currency {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 24px;
+  color: #db4444;
+}
+.price{
+  gap:12px;
+}
+.original-price{
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 24px;
+  color: rgb(0, 0, 0, 0.5);
+  text-decoration:line-through;
+}
+
+.porduct-card-container{
+  
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.product-card{
+  margin-top: 60px;
+}
+
+
+.product-image-container {
+  min-width: 270px;
+  height: 250px;
+  background-color: #F5F5F5;
+  display: flex; /* Enables flexbox */
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  position: relative;
+}
+.wishlist{
+  display: flex;
+  align-items: center ;
+  position: absolute;
+  top: 5%;
+  right: 5%; 
+  padding: 5px 4px;
+  background-color: white;
+  border-radius: 100%;
+}
+.wishlist-active {
+  color: red;
+}
+.add-cart{
+  position: absolute;
+  bottom: 0;
+  width: 270px;
+  height: 41px;
+  background-color: black;
+  color: white ;
+  text-align: center;
+  padding-top: 8px;
+  cursor: pointer;
+}
+.product-image-container img {
+  max-width: 100%; /* Ensures the image is responsive */
+  max-height: 100%; /* Prevents overflow */
+  object-fit: contain; /* Ensures the full image is visible */
+}
+.rating {
+  font-size: 20px; /* Adjust star size */
+  color: gold; /* Default color for stars */
+}
+/* ************ */
+.flex {
+  display: flex;
+  align-items: center;
+}
+.primary-button {
+  color: white;
+  background-color: #db4444;
+  border: none;
+  padding: 16px 48px;
+  border-radius: 4px;
+}
+a {
+  cursor: pointer;
+}
+.text-danger {
+  color: red;
+  font-weight: 400;
+  font-size: 0.75rem;
+  text-align: left;
+}
+.decoration{
+  width: 20px;
+  height: 40px;
+  background-color: #db4444;
+  border-radius: 4px;
+}
+.small-text{
+  font-weight: 600;
+  font-size: 16px;
+  color: #db4444;
+  gap: 16px;
+}
+
+/* .nav-menu a:hover{
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.nav-menu a{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    color: black;
+}
+.activeLink{
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+} */
+/* Default link styles */
+

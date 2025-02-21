@@ -1,0 +1,48 @@
+/* Wishlist Container */
+.wishlist-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Title and Move All Button */
+.wishlist-title {
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.move-all-btn {
+    float: right;
+    padding: 10px 20px;
+    border: 1px solid black;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.move-all-btn:hover {
+    background: black;
+    color: white;
+}
+
+
+/* Wishlist Button */
+.wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.wishlist i {
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+/* Wishlist Active State */
+.wishlist-active {
+    color: red !important;
+}
+

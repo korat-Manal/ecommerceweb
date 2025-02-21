@@ -1,0 +1,93 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px hsla(0, 39%, 89%, 0.1);
+    border-radius: 8px;
+}
+.billing-details, .order-summary {
+    width: 48%;
+}
+h2 {
+    margin-bottom: 20px;
+}
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: rgb(0, 0, 0, 0.4);
+}
+.check-out-form span{
+    color: rgb(219, 68, 68, 0.4);
+}
+input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border:none;
+    margin-bottom: 10px;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+}
+input[type="radio"]:checked{
+    accent-color : black;
+}
+input:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+.save-info {
+    display: flex;
+    align-items: center;
+}
+.save-info input {
+    margin-right: 10px;
+}
+.items .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+.items img {
+    width: 50px;
+    height: auto;
+}
+.pricing div {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+.payment-options {
+    margin: 10px 0;
+}
+.option{
+    display: flex;
+    gap: 16px;
+}
+.coupon-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.coupon-section input {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.coupon-section button, .place-order {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.place-order {
+    width: 100%;
+    margin-top: 10px;
+}

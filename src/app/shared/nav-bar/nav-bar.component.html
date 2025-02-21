@@ -1,0 +1,58 @@
+<nav>
+    <div class="nav-title flex">
+      <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
+      <a>ShopNow</a>
+    </div>
+    <div class="nav-container  flex">
+      <div class="nav-header">
+        <!-- <div class="nav-menu-btn">
+          <a (click)="toggleMenu()"><i class="fa-solid fa-bars"></i></a>
+        </div> -->
+        <div class="nav-logo">Exlusive</div>
+      </div>
+  
+      <div class="nav-menu flex" [ngClass]="{ 'active-menu': isMenuOpen }">
+        <a routerLink="/home" routerLinkActive="active-link">Home</a>
+        <a routerLink="/contact" routerLinkActive="active-link">Contact</a>
+        <a routerLink="/about" routerLinkActive="active-link">about</a>
+        <a
+          routerLink="/sign-up"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Sign Up</a
+        >
+      </div>
+      <div class="nav-search-container flex">
+        <div class="nav-search flex">
+          <input type="text" placeholder="What are you looking for?" />
+          <button class="flex">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+  
+        <ng-container *ngIf="isHome">
+          <a routerLink="/home/wishlist"><i class="fa-regular fa-heart"></i></a>
+          <div class="cart">
+            <a routerLink="/home/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+            <span class="cart-badge" *ngIf="cartCount > 0">{{cartCount}}</span>
+          </div>
+          
+          
+          <div class="user-profile">
+            <a *ngIf="isAuthenticated" (click)="profileMenu()">
+              <i class="fa-regular fa-user"></i>
+            </a>
+            <div class="menu " [ngClass]="{'open': isOpen}">
+              <ul>
+                <li><a (click)="navigateTo('/home/manage-user')" *ngIf="isAuthenticated" > Manage My Account</a></li>
+                <li><a href="#my-order">My Order</a></li>
+                <li><a href="#my-cancellations">My Cancellations</a></li>
+                <li><a href="#my-reviews">My Reviews</a></li>
+                <li><a (click)="logout()">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+</nav>

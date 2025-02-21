@@ -1,0 +1,184 @@
+<div>
+    <app-nav-bar></app-nav-bar>
+</div> 
+<div class="home-container" *ngIf="showHomeContent">
+    <div class="hero-section">
+        <div class="hero-section-container flex">
+            <div class="hero-section-categories flex">
+                <div class="hero-section-category first-item flex">
+                    <a>Woman's Fasihon</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Men's Fashion</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Electronics</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>   
+                <div class="hero-section-category flex">
+                    <a>Home & lifeStyle</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Medicine</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Sports & OutDoor</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Baby's and toys</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Groceries and Pets</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="hero-section-category flex">
+                    <a>Health & Beauty</a>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+            <div class="banner-container">
+                <div class="banner" *ngIf="banners.length > 0" [style.background-image]="'url(' + banners[currentBannerIndex].image + ')'">
+                <div class="banner-content"> 
+                    <p>{{ banners[currentBannerIndex].title }}</p>
+                    <h1>{{ banners[currentBannerIndex].description }}</h1>
+                    <a href="{{ banners[currentBannerIndex].link }}" class="btn btn-primary">Shop Now</a>
+                </div>
+              </div>
+              <div class="dots">
+                <span
+                  *ngFor="let _ of banners; let i = index"
+                  (click)="showBanner(i)"
+                  [class.active]="i === currentBannerIndex"
+                ></span>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="sales">
+    </div>
+    <div class="product-categories-container">
+        <div class="product-categories-header flex">
+            <div class="product-categories-header-content flex">
+                <div class="small-text flex">
+                    <div class="decoration">
+    
+                    </div>
+                    Categories
+                </div>
+                <h1>Browser By Category</h1>
+            </div>
+        </div>
+        <div class="product-categories flex">
+            <div class="product-type flex">  
+            <i class="fa-solid fa-mobile-screen-button"></i>
+            <p>Phones</p>
+            </div>
+            <div class="product-type flex">  
+                <i class="fa-solid fa-desktop"></i>
+                <p>Computers</p>
+            </div>
+            <div class="product-type flex">  
+                <i class="fa-regular fa-clock"></i>
+                <p>Watch</p>
+            </div>
+            <div class="product-type flex">  
+                <i class="fa-solid fa-camera"></i>
+                <p>Camera</p>
+            </div>
+            <div class="product-type flex">  
+                <i class="fa-solid fa-headphones"></i>
+                <p>headphone</p>
+            </div>
+            <div class="product-type flex">  
+                <i class="fa-solid fa-gamepad"></i>
+                <p>Gaming</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="best-seller-products">
+        <div class="header-container flex">
+            <div class="best-seller-header flex">
+                <div class="small-text flex">
+                    <div class="decoration">
+        
+                    </div>
+                    this month
+                </div>
+                <h1>Best Selling Product</h1>
+            </div>
+            <button class="primary-button" (click)="toggleProducts()">
+                {{ showAllProducts ? 'Show Less' : 'View all products' }}
+            </button>
+        </div>
+       
+        <div class="porduct-card-container flex">
+            <div class="product-card" *ngFor="let product of (showAllProducts ? bestSeller : bestSeller.slice(0,4)); let i = index">
+                <div class="product-image-container" (click)="toggleCartVisibility(i)">
+                    <img [src]="product.image">
+                    <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                    </div>
+                    <div class="wishlist" >
+                        <i class="fa-heart"
+                            [class.fa-regular]="!product.isFavorite"
+                            [class.fa-solid]="product.isFavorite"
+                            [class.wishlist-active]="product.isFavorite" 
+                            (click)="toggleWishList(product, $event)"></i>
+                    </div>
+                </div>
+                <p>{{product.name}}</p>
+                <div class="price flex">
+                    <div class="currency">
+                        ${{product.price}}
+                    </div>
+                    <div class="original-price">
+                        {{product.originalPrice}}
+                    </div>
+                </div>
+                <div class="rating">
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                        <span *ngIf="i < product.ratings">★</span>
+                        <span *ngIf="i >= product.ratings">☆</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="height" style="height: 100vh;">
+
+    </div>
+    <div class="about-services-container flex">
+        <div class="about-service flex">
+          <img src="/img13.png">
+          <div class="about-service-content">
+            <h2>FREE AND FAST DELIVERY</h2>
+            <p>Free delivery for all orders over $140</p>
+          </div>
+        </div>
+        <div class="about-service flex">
+          <img src="/img14.png">
+          <div class="about-service-content">
+            <h2>24/7 CUSTOMER SERVICE</h2>
+            <p>Friendly 24/7 customer support</p>
+          </div>
+        </div>
+        <div class="about-service flex">
+          <img src="/img15.png">
+          <div class="about-service-content">
+            <h2>MONEY BACK GUARANTEE</h2>
+            <p>We reurn money within 30 days</p>
+          </div>
+        </div>
+    </div> 
+</div>
+<router-outlet></router-outlet>
+<div>
+    <app-footer></app-footer>
+</div>

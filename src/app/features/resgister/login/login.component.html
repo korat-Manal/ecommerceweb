@@ -1,0 +1,25 @@
+<div>
+    <app-nav-bar></app-nav-bar>
+</div>
+<div class="login-section flex">
+    <img src="/img4.png">
+
+    <div class="login-container">
+    <h2>Log in to Exclusive</h2>
+    <p>Enter your details below</p>
+
+    <form [formGroup]="loginForm">
+        <input type="email" placeholder="Email"  formControlName = email required>
+        <input type="password" placeholder="Password"  formControlName = password required>
+
+        <div class="login-actions">
+        <button class="login-btn" (click)="login()">Log In</button>
+        <a href="#" class="forgot-password">Forget Password?</a>
+        </div>
+    </form>
+    </div>
+   
+</div>
+<div>
+    <app-footer></app-footer>
+</div>

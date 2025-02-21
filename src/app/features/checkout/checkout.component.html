@@ -1,0 +1,105 @@
+<div class="height" style="height:181px"></div>
+<div class="container">
+    <div class="billing-details">
+        <h2>Billing Details</h2>
+        <form class="check-out-form" [formGroup]="currentDetails">
+            <label>First Name <span>*</span></label>
+            <input type="text" required formControlName="name">
+                @if(currentDetails.get('name')?.touched && currentDetails.get('name')?.invalid ){
+                    @if(currentDetails.get('name')?.errors?.['required']){
+                        <div class="text-danger">
+                            *name required
+                        </div>
+                    }
+                }
+            <label>Company Name</label>
+            <input type="text" formControlName="companyName">
+            
+            <label>Street Address<span>*</span></label>
+            <input type="text" required formControlName="streetAddress">
+            @if(currentDetails.get('streetAddress')?.touched && currentDetails.get('streetAddress')?.invalid ){
+                @if(currentDetails.get('streetAddress')?.errors?.['required']){
+                    <div class="text-danger">
+                        *city address required
+                    </div>
+                }
+            }
+            <label>Apartment, floor, etc. (optional)</label>
+            <input type="text" formControlName="apartmentName">
+            
+            <label>Town/City<span>*</span></label>
+            <input type="text" required formControlName="city">
+            @if(currentDetails.get('city')?.touched && currentDetails.get('city')?.invalid ){
+                @if(currentDetails.get('city')?.errors?.['required']){
+                    <div class="text-danger">
+                        *city name required
+                    </div>
+                }
+            }
+            
+            <label>Phone Number<span>*</span></label>
+            <input type="text" required formControlName="phone">
+            @if(currentDetails.get('phone')?.touched && currentDetails.get('phone')?.invalid){
+                @if(currentDetails.get('phone')?.errors?.['required']){
+                    <div class="text-danger">
+                        *phone number reqiured
+                    </div>
+                }
+                @if(currentDetails.get('phone')?.errors?.['minlength']){
+                    <div class="text-danger">
+                        *phone number invalid required
+                    </div>
+                }
+            }
+            <label>Email Address<span>*</span></label>
+            <input type="email" required formControlName="email">
+            @if(currentDetails.get('email')?.touched && currentDetails.get('email')?.invalid){
+                @if(currentDetails.get('email')?.errors?.['required']){
+                    <div class="text-danger">
+                        *e-mail reqiured
+                    </div>
+                }
+                @if(currentDetails.get('email')?.errors?.['email']){
+                    <div class="text-danger">
+                        *email invalid required
+                    </div>
+                }
+            }
+            <div class="save-info">
+                <input type="checkbox" checked>
+                <label>Save this information for faster check-out next time</label>
+            </div>
+        </form>
+    </div>
+    
+    <div class="order-summary">
+        <div class="items"  *ngFor="let item of cartItems">
+            <div class="item">
+                <img [src]="item.image">
+                <span>{{ item.name }}</span>
+                <span>${{ item.price }}</span>
+            </div>
+        </div>
+        <hr>
+        <div class="pricing">
+            <div>Subtotal: <span>${{ subTotalPrice }}</span></div>
+            <div>Shipping: <span>Free</span></div>
+            <div>Total: <span>${{ grandTotalPrice }}</span></div>
+        </div>
+        <div class="payment-options">
+            <div class="option">
+                <input type="radio" name="payment" id="bank" disabled>
+                <label for="bank">Bank</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="payment" id="cod" checked>
+                <label for="cod">Cash on delivery</label>
+            </div>
+        </div>
+        <!-- <div class="coupon-section">
+            <input type="text" placeholder="Coupon Code">
+            <button>Apply Coupon</button>
+        </div> -->
+        <button class="place-order" (click)="placeOrder( )">Place Order</button>
+    </div>
+</div>

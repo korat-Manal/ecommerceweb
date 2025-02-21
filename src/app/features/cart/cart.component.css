@@ -1,0 +1,146 @@
+.cart-container {
+  width: 80%;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+  border-spacing: 0 50px; /* 10px vertical gap */
+  border-collapse: separate; /* Ensure spacing works */
+}
+.cart-table th,
+.cart-table td {
+  padding: 10px;
+  text-align: left;
+}
+.cart-table tr {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.cart-table thead {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.number-input {
+  width: 72px;
+  
+  display: flex;
+  align-items: center;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 10px;
+  width: fit-content;
+  position: relative;
+}
+
+.number-input span {
+  width: 40px;
+  text-align: center;
+  font-size: 18px;
+  border: none;
+  background: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  
+}
+.number-input i{
+  padding: 0 10px;
+}
+.arrow-up{
+  position: absolute;
+  top: 7px;
+  right: -6px;
+}
+.arrow-down{
+  position: absolute;
+  top: 20px;
+  right: -6px;
+}
+
+.product-info {
+  display: flex;
+  align-items: center;
+}
+.product-img {
+  width: 50px;
+  margin-right: 10px;
+}
+.remove-btn {
+  background: #db4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 18px;
+}
+.cart-actions,
+.coupon-section,
+.cart-summary {
+  margin-top: 20px;
+}
+.checkout-btn {
+  background-color: #db4444;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.return-shop,
+.update-cart {
+  background-color: white;
+  border: 1px solid rgb(0, 0, 0, 0.5);
+  color: black;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.cart-summary {
+  margin-inline-start: auto;
+  width: 470px;
+  height: 324px;
+  border: 1px solid black;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 140px;
+}
+.cart-actions {
+  justify-content: space-between;
+}
+.cart-summary h3,
+.cart-summary p,
+.cart-summary button {
+  margin: 24px;
+}
+.cart-summary p {
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.4) ;
+}
+.empty-cart-container {
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 30vh;
+}
+
+
+.shop-now-btn {
+  background-color: #DB4444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.shop-now-btn:hover {
+  background-color: #a83232;
+}
