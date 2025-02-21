@@ -1,9 +1,8 @@
 <div class="wishlist-container">
     <h2 class="wishlist-title">Wishlist </h2>
     <button class="move-all-btn">Move All To Bag</button>
-
     <!-- <div class="product-card-container flex">
-        <div class="product-card" *ngFor="let product of (showAllProducts ? bestSeller : bestSeller.slice(0,4)); let i = index">
+        <div class="product-card" *ngFor="let product of wishList; index as i">
             <div class="product-image-container">
                 <img [src]="product.image" alt="{{product.name}}">
                 <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">

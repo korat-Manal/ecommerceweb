@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrl: './wishlist.component.css'
 })
 export class WishlistComponent {
+
+  wishList: any[] = [];
   
   constructor(private cartService: CartService){
 
