@@ -10,10 +10,7 @@ import { ManageUserComponent } from './features/manage-user/manage-user.componen
 import { CartComponent } from './features/cart/cart.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component'; 
 import { HomeComponent } from './features/home/home.component';
-import { CheckoutComponent } from './features/checkout/checkout.component';
-import { ApplicationConfig, importProvidersFrom } from '@angular/core';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CheckoutComponent } from './features/checkout/checkout.component'; 
 
 
 export const routes: Routes = [

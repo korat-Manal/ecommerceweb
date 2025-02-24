@@ -38,8 +38,8 @@ nav {
 .nav-search-container{
   align-items: center;
   justify-content: space-between;
-  gap: 15px; /* Reduce gap for better spacing */
-  padding: 5px 10px; /* Add padding for proper spacing */
+  gap: 15px; 
+  padding: 5px 10px; 
     
 }
 .menu a{
@@ -73,15 +73,14 @@ nav {
     display: none;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 7;
     position: absolute;
     top: 14%;
     right: 9%;
     width: 225px;
-    height: 208px;
-    background: rgba(0, 0, 0, 0.5); /* Darker for better visibility */
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(12px);
-    border-radius: 8px; /* Slightly rounded corners */
+    border-radius: 8px;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(-10px);
@@ -93,7 +92,6 @@ nav {
     transform: translateY(0);
 }
 
-/* Style the links for better UX */
 .menu ul {
     list-style: none;
     padding: 0;

@@ -1,45 +1,63 @@
 <div class="height" style="height: 181px;"></div>
 <div class="manage-user flex">
     <div class="sidebar">
-        <a href="#" class="active">My Profile</a>
-        <a href="#">Address Book</a>
-        <a href="#">My Payment Options</a>
-        <a href="#">My Returns</a>
-        <a href="#">My Cancellations</a>
-        <a href="#">My WishList</a>
+        <a href="/home/manage-user" class="active">My Profile</a>
+        <a href="/home/wishlist">My WishList</a>
     </div>
     <div class="content">
         <div class="form-container">
             <h2>Edit Your Profile</h2>
-            <form>
+            <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
                 <div class="account-field-container">
                     <div class="account-field flex">
-                        <label for="First Name">First Name</label>
-                        <input type="text" placeholder="Md">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" formControlName="firstName">
+                        <div class="error" *ngIf="editForm.get('firstName')?.invalid && editForm.get('firstName')?.touched">
+                            <div class="text-danger">
+                                First Name is required
+                            </div>
+                            
+                        </div>
                     </div>
                     <div class="account-field flex">
                         <label for="Last Name">Last Name</label>
-                        <input type="text" placeholder="Rimel">
+                        <input type="text" placeholder="Last Name" formControlName="lastName">
                     </div>
                 </div>
-               
-                    
+            
                 <div class="account-field-container">
                     <div class="account-field flex">
                         <label for="email">Email</label>
-                        <input type="email" placeholder="rimel1111@gmail.com">
+                        <input type="email" id="email" formControlName="email">
+                        <div class="error" *ngIf="editForm.get('email')?.invalid && editForm.get('email')?.touched">
+                            <span *ngIf="editForm.get('email')?.errors?.['required']">
+                                <div class="text-danger">
+                                    Email is required
+                                </div>
+                                </span>
+                            <span *ngIf="editForm.get('email')?.errors?.['email']">
+                                <div class="text-danger">
+                                    Enter a valid email
+                                </div>
+                                </span>
+                        </div>
                     </div>
                     <div class="account-field flex">
-                        <label>Address</label>
-                        <input type="text" placeholder="Kingston, 5236, United State">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" formControlName="address">
+                        <div class="error" *ngIf="editForm.get('address')?.invalid && editForm.get('address')?.touched">
+                            <div class="text-danger">
+                                Address is required
+                            </div>
+                        </div>
                     </div>
                 </div>
-               
-               
+            
                 <label>Password Changes</label>
-                <input type="password" placeholder="Current Password">
-                <input type="password" placeholder="New Password">
-                <input type="password" placeholder="Confirm New Password">
+                <input type="text" placeholder="Current Password" formControlName="currentPassword">
+                <input type="text" placeholder="New Password" formControlName="newPassword">
+                <input type="text" placeholder="Confirm New Password" formControlName="confirmPassword">
+                
                 <div class="buttons">
                     <button type="button" class="cancel">Cancel</button>
                     <button type="submit" class="save">Save Changes</button>

@@ -73,3 +73,8 @@
     flex-direction: column;
     align-items: flex-start;
 }
+a[disabled] {
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
+  }
