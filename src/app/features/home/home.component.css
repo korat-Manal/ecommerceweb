@@ -93,7 +93,7 @@
 .about-services-container {
   justify-content: center;
   gap: 88px;
-  margin-bottom: 140px;
+  margin: 140px 0px;
   padding-inline: 70px;
   flex-wrap: wrap;
 }

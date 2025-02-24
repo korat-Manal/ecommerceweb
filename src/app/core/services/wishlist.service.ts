@@ -27,6 +27,15 @@ export class WishlistService {
     return this.wishlist;
   }
 
+  removeFromWishlist(product: any) {
+    const index = this.wishlist.findIndex(item => item.name === product.name);
+    
+    if (index > -1) {
+      this.wishlist.splice(index, 1);
+      this.saveWishlist();
+    }
+  }
+  
   toggleWishlistItem(product: any) {
     const index = this.wishlist.findIndex(item => item.name === product.name);
 

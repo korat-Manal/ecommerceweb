@@ -8,6 +8,9 @@
                         <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">
                             <i class="fa-solid fa-cart-shopping"></i> Add to cart
                         </div>
+                        <div class="remove-product" (click)="removeFromWishlist(product, $event)">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </div>
                     </div>
                     <p class="product-name">{{ product.name }}</p>
                     <div class="price flex">

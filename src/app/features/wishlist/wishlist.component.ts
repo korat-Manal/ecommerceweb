@@ -24,6 +24,14 @@ export class WishlistComponent implements OnInit{
     });
   }
 
+  removeFromWishlist(product: any, event: Event) {
+    event.stopPropagation(); // Prevents triggering toggleCartVisibility
+  
+    console.log("Removing from wishlist:", product); // Debugging log
+  
+    this.wishlistService.removeFromWishlist(product);
+  }
+  
   toggleCartVisibility(index: number) {
     this.selectedProductIndex = this.selectedProductIndex === index ? null : index;
   }

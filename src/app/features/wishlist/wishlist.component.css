@@ -49,3 +49,16 @@
     gap: 26px;
     flex-wrap: wrap;
 }
+.remove-product{
+    display: flex;
+    height: 34px;
+    width: 34px;
+    align-items: center;
+    justify-content: center; 
+    position: absolute;
+    top: 5%;
+    right: 5%; 
+    padding: 5px 4px;
+    background-color: white;
+    border-radius: 100%;
+}
