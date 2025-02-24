@@ -1,9 +1,8 @@
 /* Wishlist Container */
 .wishlist-container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
 }
 
 /* Title and Move All Button */
@@ -46,3 +45,7 @@
     color: red !important;
 }
 
+.product-card-container{
+    gap: 26px;
+    flex-wrap: wrap;
+}

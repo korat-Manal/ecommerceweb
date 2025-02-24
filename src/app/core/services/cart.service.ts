@@ -20,7 +20,7 @@ export class CartService {
     const storedCart = localStorage.getItem('cartItems');
     if (storedCart) {
       this.cartItems = JSON.parse(storedCart);
-      this.cartCount.next(this.cartItems.length);
+      this.cartCount.next(this.getTotalItemCount());
     }
   }
 
@@ -48,7 +48,7 @@ export class CartService {
     }
 
     this.toastr. success('Added to cart','Succuess')
-    this.updateTotals();
+    // this.updateTotals();
     this.saveCart();
   }
 

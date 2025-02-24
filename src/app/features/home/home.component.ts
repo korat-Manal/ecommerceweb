@@ -8,6 +8,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { CartService } from "../../core/services/cart.service";
 import { ToastrService } from "ngx-toastr";
+import { WishlistService } from "../../core/services/wishlist.service";
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit{
   showAllProducts = false;
   isFavorite: boolean = false;
 
-  constructor(private router: Router, private cartService: CartService, private toastr: ToastrService) { }
+  constructor(private router: Router, private cartService: CartService, private toastr: ToastrService, private wishlistService: WishlistService) { }
 
   ngOnInit() {
     this.updateHomeContent();
@@ -61,12 +62,20 @@ export class HomeComponent implements OnInit{
     this.slideInterval = setInterval(() => {
       this.currentBannerIndex = (this.currentBannerIndex + 1) % this.banners.length;
     }, 5000);
+
+    this.wishlistService.wishlist$.subscribe(wishlistItems => {
+      this.bestSeller.forEach(product => {
+        product.isFavorite = wishlistItems.some(item => item.name === product.name);
+      });
+    });
   }
 
-  toggleWishList(product: any, event: Event){
+  toggleWishList(product: any, index: number, event: Event){
     event.stopPropagation();
     product.isFavorite = !product.isFavorite;
+    this.wishlistService.toggleWishlistItem(product);
   }
+  
   toggleProducts() {
     this.showAllProducts = !this.showAllProducts;
   }

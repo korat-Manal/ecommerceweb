@@ -1,34 +1,30 @@
-<div class="wishlist-container">
-    <h2 class="wishlist-title">Wishlist </h2>
-    <button class="move-all-btn">Move All To Bag</button>
-    <!-- <div class="product-card-container flex">
-        <div class="product-card" *ngFor="let product of wishList; index as i">
-            <div class="product-image-container">
-                <img [src]="product.image" alt="{{product.name}}">
-                <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">
-                    <i class="fa-solid fa-cart-shopping"></i> Add to cart
+    <div class="wishlist-container">
+        <h2 class="wishlist-title">Wishlist </h2>
+        <button class="move-all-btn"  (click)="moveAllToCart()">Move All To Bag</button>
+            <div class="product-card-container flex">
+                <div class="product-card" *ngFor="let product of wishList; let i = index">
+                    <div class="product-image-container" (click)="toggleCartVisibility(i)" >
+                        <img [src]="product.image" alt="{{ product.name }}">
+                        <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">
+                            <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                        </div>
+                    </div>
+                    <p class="product-name">{{ product.name }}</p>
+                    <div class="price flex">
+                        <div class="currency">${{ product.price }}</div>
+                        <div class="original-price">{{ product.originalPrice }}</div>
+                    </div>
+                    <div class="rating">
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                            <span *ngIf="i < product.ratings">★</span>
+                            <span *ngIf="i >= product.ratings">☆</span>
+                        </span>
+                    </div>
                 </div>
-                <div class="wishlist">
-                    <i class="fa-heart"
-                        [class.fa-regular]="!product.isFavorite"
-                        [class.fa-solid]="product.isFavorite"
-                        [class.wishlist-active]="product.isFavorite" 
-                        (click)="toggleWishList(product, $event)"></i>
-                </div>
             </div>
-            <p class="product-name">{{product.name}}</p>
-            <div class="price flex">
-                <div class="currency">${{product.price}}</div>
-                <div class="original-price">{{product.originalPrice}}</div>
-            </div>
-            <div class="rating">
-                <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-                    <span *ngIf="i < product.ratings">★</span>
-                    <span *ngIf="i >= product.ratings">☆</span>
-                </span>
-            </div>
-        </div>
-    </div> -->
-</div>
+            <ng-template #emptyWishlist>
+                <h2>No items in wishlist!</h2>
+            </ng-template>
+    </div>
 
-<div class="height" style="height:100vh"></div>
+    <div class="height" style="height:100vh"></div>

@@ -130,7 +130,7 @@
                             [class.fa-regular]="!product.isFavorite"
                             [class.fa-solid]="product.isFavorite"
                             [class.wishlist-active]="product.isFavorite" 
-                            (click)="toggleWishList(product, $event)"></i>
+                            (click)="toggleWishList(product, i, $event)"></i>
                     </div>
                 </div>
                 <p>{{product.name}}</p>

@@ -4,6 +4,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
+import { WishlistService } from '../../core/services/wishlist.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -18,8 +19,9 @@ export class NavBarComponent implements OnInit {
   isAuthenticated: boolean = false;
   isOpen = false;
   cartCount = 0;
+  wishlistCount: number = 0;
 
-  constructor(private router: Router, private authService: AuthService, private cartService: CartService) {}
+  constructor(private router: Router, private authService: AuthService, private cartService: CartService, private wishlistService: WishlistService) {}
 
   ngOnInit() {
     this.updateIsHome();
@@ -34,6 +36,13 @@ export class NavBarComponent implements OnInit {
 
     this.cartService.getCartCount().subscribe(count =>{
       this.cartCount = count;
+    });
+
+    const storedCart: { quantity: number }[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    this.cartCount = storedCart.reduce((total, item: { quantity: number }) => total + item.quantity, 0);  
+
+    this.wishlistService.wishlistCount$.subscribe(count => {
+      this.wishlistCount = count;
     });
   }
 

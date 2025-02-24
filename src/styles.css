@@ -48,15 +48,12 @@ a{
 }
 
 .porduct-card-container{
-  
   justify-content: space-between;
   flex-wrap: wrap;
 }
 .product-card{
   margin-top: 60px;
 }
-
-
 .product-image-container {
   min-width: 270px;
   height: 250px;

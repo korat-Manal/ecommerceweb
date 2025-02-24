@@ -31,11 +31,18 @@
         </div>
   
         <ng-container *ngIf="isHome">
-          <a routerLink="/home/wishlist"><i class="fa-regular fa-heart"></i></a>
-          <div class="cart">
-            <a routerLink="/home/cart"><i class="fa-solid fa-cart-shopping"></i></a>
-            <span class="cart-badge" *ngIf="cartCount > 0">{{cartCount}}</span>
+          <div class="home-icons flex">
+            <div class="wishlist">
+              <a routerLink="/home/wishlist"><i class="fa-regular fa-heart"></i></a>
+              <span *ngIf="wishlistCount > 0" class="wishlist-badge">{{ wishlistCount }}</span>
+            </div>
+            
+            <div class="cart">
+              <a routerLink="/home/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+              <span class="cart-badge" *ngIf="cartCount > 0">{{cartCount}}</span>
+            </div>
           </div>
+         
           
           
           <div class="user-profile">
