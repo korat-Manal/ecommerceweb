@@ -63,19 +63,7 @@ a{
   align-items: center; /* Centers vertically */
   position: relative;
 }
-.wishlist{
-  display: flex;
-  align-items: center ;
-  position: absolute;
-  top: 5%;
-  right: 5%; 
-  padding: 5px 4px;
-  background-color: white;
-  border-radius: 100%;
-}
-.wishlist-active {
-  color: red;
-}
+
 .add-cart{
   position: absolute;
   bottom: 0;
@@ -88,9 +76,10 @@ a{
   cursor: pointer;
 }
 .product-image-container img {
-  max-width: 100%; /* Ensures the image is responsive */
-  max-height: 100%; /* Prevents overflow */
-  object-fit: contain; /* Ensures the full image is visible */
+  max-width: 100%; 
+  max-height: 100%; 
+  object-fit: contain; 
+
 }
 .rating {
   font-size: 20px; /* Adjust star size */

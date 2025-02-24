@@ -37,7 +37,6 @@
 }
 
 .banner {
-
   height: 344px;
   background-size: cover;
   background-position: center;
@@ -152,7 +151,7 @@
 }
 
 .best-seller-products{
-padding: 80px 0 70px 0;
+  padding: 80px 0 70px 0;
   margin-inline: 135px;
 }
 
@@ -163,4 +162,35 @@ padding: 80px 0 70px 0;
 }
 .header-container{
   justify-content: space-between;
+}
+.wishlist{
+  display: flex;
+  height: 34px;
+  width: 34px;
+  align-items: center;
+  justify-content: center; 
+  position: absolute;
+  top: 5%;
+  right: 5%; 
+  padding: 5px 4px;
+  background-color: white;
+  border-radius: 100%;
+}
+.wishlist-active {
+  color: red;
+}
+
+.product-details{
+  display: flex;
+  height: 34px;
+  width: 34px;
+  padding-top: 5px;
+  align-items: center;
+  justify-content: center; 
+  position: absolute;
+  top: 23%;
+  right: 5%;
+  
+  background-color: white;
+  border-radius: 100%;
 }

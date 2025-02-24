@@ -4,7 +4,7 @@ import { NavBarComponent } from "../../shared/nav-bar/nav-bar.component";
 import { FooterComponent } from "../../shared/footer/footer.component"; 
 import { CommonModule } from '@angular/common';
 import { Banner } from "../../core/model/home.model";
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { CartService } from "../../core/services/cart.service";
 import { ToastrService } from "ngx-toastr";
@@ -13,7 +13,7 @@ import { WishlistService } from "../../core/services/wishlist.service";
 @Component({
   selector: 'app-home',
   standalone:true,
-  imports: [NavBarComponent, FooterComponent, CommonModule, RouterOutlet],
+  imports: [NavBarComponent, FooterComponent, CommonModule, RouterOutlet, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -38,6 +38,7 @@ export class HomeComponent implements OnInit{
     {image: '/img35.png', name:'Jr. Zoom Soccer Cleats', price: '360',originalPrice:'', ratings: 2, isFavorite : false},
     {image: '/img36.png', name:'GP11 Shooter USB Gamepad', price: '360',originalPrice:'', ratings: 2, isFavorite : false},
     {image: '/img37.png', name:'Quilted Satin Jacket', price: '360',originalPrice:'', ratings: 2, isFavorite : false},
+    {image: '/img39.png', name:'Havic HV G-92 Gamepad',price:'360',originalPrice:'', ratings: 2, isFavorite : false}
   ]
 
   currentBannerIndex = 0;
@@ -75,7 +76,10 @@ export class HomeComponent implements OnInit{
     product.isFavorite = !product.isFavorite;
     this.wishlistService.toggleWishlistItem(product);
   }
-  
+  productDetails(event: Event){
+    event.stopPropagation();
+    this.router.navigate(["/home/productDetails"])
+  }
   toggleProducts() {
     this.showAllProducts = !this.showAllProducts;
   }

@@ -132,6 +132,9 @@
                             [class.wishlist-active]="product.isFavorite" 
                             (click)="toggleWishList(product, i, $event)"></i>
                     </div>
+                    <div class="product-details">
+                        <a (click)="productDetails($event)"><i class="fa-regular fa-eye"></i></a> 
+                    </div>
                 </div>
                 <p>{{product.name}}</p>
                 <div class="price flex">
