@@ -5,7 +5,7 @@
                 <div class="product-card" *ngFor="let product of wishList; let i = index">
                     <div class="product-image-container" (click)="toggleCartVisibility(i)" >
                         <img [src]="product.image" alt="{{ product.name }}">
-                        <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">
+                        <div class="add-cart" (click)="!product.inStock ? null : addToCart(product)"  [ngClass]="{'disabled-btn': !product.inStock}"  *ngIf="selectedProductIndex === i">
                             <i class="fa-solid fa-cart-shopping"></i> Add to cart
                         </div>
                         <div class="remove-product" (click)="removeFromWishlist(product, $event)">

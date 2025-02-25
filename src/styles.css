@@ -48,7 +48,7 @@ a{
 }
 
 .porduct-card-container{
-  justify-content: space-between;
+  gap: 26px;
   flex-wrap: wrap;
 }
 .product-card{
@@ -134,3 +134,12 @@ a {
 } */
 /* Default link styles */
 
+
+.disabled-btn{
+  cursor: not-allowed !important;
+  opacity: 0.6;
+}
+
+.wishlist-active {
+  color: red;
+}

@@ -122,7 +122,7 @@
             <div class="product-card" *ngFor="let product of (showAllProducts ? bestSeller : bestSeller.slice(0,4)); let i = index">
                 <div class="product-image-container" (click)="toggleCartVisibility(i)">
                     <img [src]="product.image">
-                    <div class="add-cart" (click)="addToCart(product)" *ngIf="selectedProductIndex === i">
+                    <div class="add-cart" (click)="!product.inStock ? null : addToCart(product)"  [ngClass]="{'disabled-btn': !product.inStock}"  *ngIf="selectedProductIndex === i">
                         <i class="fa-solid fa-cart-shopping"></i> Add to cart
                     </div>
                     <div class="wishlist" >
@@ -133,7 +133,7 @@
                             (click)="toggleWishList(product, i, $event)"></i>
                     </div>
                     <div class="product-details">
-                        <a (click)="productDetails($event)"><i class="fa-regular fa-eye"></i></a> 
+                        <a (click)="productDetails($event, product)"><i class="fa-regular fa-eye"></i></a> 
                     </div>
                 </div>
                 <p>{{product.name}}</p>

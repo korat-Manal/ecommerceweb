@@ -176,9 +176,7 @@
   background-color: white;
   border-radius: 100%;
 }
-.wishlist-active {
-  color: red;
-}
+
 
 .product-details{
   display: flex;

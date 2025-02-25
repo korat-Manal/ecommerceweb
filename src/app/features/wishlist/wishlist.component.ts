@@ -42,7 +42,9 @@ export class WishlistComponent implements OnInit{
   }
 
   moveAllToCart() {
-    this.wishList.forEach(product => {
+    this.wishList
+    .filter(product => product.inStock)
+    .forEach(product => {
       this.cartService.addToCart(product);
     });
   }

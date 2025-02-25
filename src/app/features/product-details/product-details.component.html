@@ -4,16 +4,16 @@
         <div class="image-gallery">
             <div class="thumbnail-list">
                 <div class="thumbnail-list-container">
-                    <img src="img39.png" alt="Thumbnail 1">
+                    <img [src]="product.image" alt="Thumbnail 1">
                 </div>
                 <div class="thumbnail-list-container">
-                    <img src="img40.png" alt="Thumbnail 2">
+                    <img [src]="product.image" alt="Thumbnail 2">
                 </div>
                 <div class="thumbnail-list-container">
-                    <img src="img41.png" alt="Thumbnail 3">
+                    <img [src]="product.image" alt="Thumbnail 3">
                 </div>
                 <div class="thumbnail-list-container">
-                    <img src="img42.png" alt="Thumbnail 4">
+                    <img [src]="product.image" alt="Thumbnail 4">
                 </div>
             </div>
             <div class="main-image">
@@ -21,14 +21,22 @@
             </div>
         </div>
         <div class="product-details flex">
-            <h1 class="product-title">Havic HV G-92 Gamepad</h1>
-            <div class="rating">
-                <span class="stars">★★★★☆</span>
-                <span class="reviews">(304 reviews)</span>
-                <span class="stock">| In Stock</span>
+            <h1 class="product-title">{{product.name}}</h1>
+            <div class="rating flex">
+                
+                    <div class="stars">
+                        <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                            <span *ngIf="i < product.ratings" class="stars"><img src="img44.png"></span>
+                            <span *ngIf="i >= product.ratings" class="stars"><img src="img45.png"> </span>
+                        </span>
+                    </div>
+             
+                <span class="reviews">({{product.reviews}}, reviews)</span>
+                <span *ngIf="product.inStock" class="text-green">| In Stock</span>
+                <span *ngIf="!product.inStock" class="text-red">| Out Of Stock</span>
             </div>
-            <p class="price">$192.00</p>
-            <p class="description">PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble-free install & mess-free removal. Pressure sensitive.</p>
+            <p class="price">${{product.price}}</p>
+            <p class="description">{{product.info}}</p>
             <div class="options">
                 <div class="size-button flex">
                     <label>Size:</label>
@@ -40,16 +48,31 @@
                         <button>XL</button>
                     </div>
                 </div>
-                
             </div>
-            <div class="purchase-section">
+            <div class="purchase-section">  
                 <div class="quantity-container flex">
-                    <button class="quantity-btn">-</button>
-                    <span class="quantity">2</span>
-                    <button class="quantity-btn">+</button>
-                </div>
-                <button class="buy-now">Buy Now</button>
-                <button class="wishlist"><i class="fa-regular fa-heart"></i></button>
+                    <button class="quantity-btn decrease-btn flex" 
+                            (click)="decreaseQuantity()" 
+                            [ngClass]="{'active-btn': isMinusActive}">
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                  
+                    <span class="quantity">{{ quantity }}</span>
+                  
+                    <button class="quantity-btn increase-btn flex" 
+                            (click)="increaseQuantity()" 
+                            [ngClass]="{'active-btn': isPlusActive}">
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                <button class="buy-now" (click)="addToCart(product)" [disabled]="!product.inStock" [ngClass]="{'disabled-btn': !product.inStock}">Buy Now</button>
+                <button class="wishlist"  (click)="toggleWishList(product, $event)">
+                    <i class="fa-heart"
+                            [class.fa-regular]="!product.isFavorite"
+                            [class.fa-solid]="product.isFavorite"
+                            [class.wishlist-active]="product.isFavorite" 
+                            ></i>
+                </button>
             </div>
         </div>
     </div>
