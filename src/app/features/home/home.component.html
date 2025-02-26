@@ -6,39 +6,39 @@
         <div class="hero-section-container flex">
             <div class="hero-section-categories flex">
                 <div class="hero-section-category first-item flex">
-                    <a>Woman's Fasihon</a>
+                    <a (click)="filterHeroProducts('women')">Woman's Fasihon</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="hero-section-category flex">
-                    <a>Men's Fashion</a>
+                    <a (click)="filterHeroProducts('men')">Men's Fashion</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="hero-section-category flex">
-                    <a>Electronics</a>
+                    <a (click)="filterHeroProducts('gaming')">Electronics</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>   
                 <div class="hero-section-category flex">
-                    <a>Home & lifeStyle</a>
+                    <a (click)="filterHeroProducts('home')">Home & lifeStyle</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
-                <div class="hero-section-category flex">
+                <!-- <div class="hero-section-category flex">
                     <a>Medicine</a>
                     <i class="fa-solid fa-chevron-right"></i>
-                </div>
+                </div> -->
                 <div class="hero-section-category flex">
-                    <a>Sports & OutDoor</a>
+                    <a (click)="filterHeroProducts('sports')">Sports & OutDoor</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="hero-section-category flex">
-                    <a>Baby's and toys</a>
+                    <a (click)="filterHeroProducts('toys')">Baby's and toys</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="hero-section-category flex">
-                    <a>Groceries and Pets</a>
+                    <a (click)="filterHeroProducts('pets')">Groceries and Pets</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
                 <div class="hero-section-category flex">
-                    <a>Health & Beauty</a>
+                    <a (click)="filterHeroProducts('healthCare')">Health & Beauty</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
@@ -60,7 +60,42 @@
             </div>
         </div>
     </div>
-    <div class="sales">
+    <div class="filtered-hero-products"  *ngIf="isFilteredProductsVisible">
+        <div class="porduct-card-container flex">
+            <div class="product-card" *ngFor="let product of filteredHeroProducts; let i = index">
+                <div class="product-image-container" (click)="toggleCartVisibility(i)">
+                    <img [src]="product.image">
+                    <div class="add-cart" (click)="!product.inStock ? null : addToCart(product)"  [ngClass]="{'disabled-btn': !product.inStock}"  *ngIf="selectedProductIndex === i">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                    </div>
+                    <div class="wishlist" >
+                        <i class="fa-heart"
+                            [class.fa-regular]="!product.isFavorite"
+                            [class.fa-solid]="product.isFavorite"
+                            [class.wishlist-active]="product.isFavorite" 
+                            (click)="toggleWishList(product, i, $event)"></i>
+                    </div>
+                    <div class="product-details">
+                        <a (click)="productDetails($event, product)"><i class="fa-regular fa-eye"></i></a> 
+                    </div>
+                </div>
+                <p>{{product.name}}</p>
+                <div class="price flex">
+                    <div class="currency">
+                        ${{product.price}}
+                    </div>
+                    <div class="original-price">
+                        {{product.originalPrice}}
+                    </div>
+                </div>
+                <div class="rating">
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                        <span *ngIf="i < product.ratings">★</span>
+                        <span *ngIf="i >= product.ratings">☆</span>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="product-categories-container">
         <div class="product-categories-header flex">
@@ -75,29 +110,65 @@
             </div>
         </div>
         <div class="product-categories flex">
-            <div class="product-type flex">  
-            <i class="fa-solid fa-mobile-screen-button"></i>
-            <p>Phones</p>
+            <div class="product-type flex" (click)="filterProducts('women')" [ngClass]="{'activated-category': selectedCategory === 'women'}">  
+            <i class="fa-solid fa-venus"></i>
+            <p>Women</p>
             </div>
-            <div class="product-type flex">  
+            <div class="product-type flex" (click)="filterProducts('computers')"  [ngClass]="{'activated-category': selectedCategory === 'computers'}">  
                 <i class="fa-solid fa-desktop"></i>
                 <p>Computers</p>
             </div>
-            <div class="product-type flex">  
-                <i class="fa-regular fa-clock"></i>
-                <p>Watch</p>
+            <div class="product-type flex" (click)="filterProducts('sports')">  
+                <i class="fa-solid fa-baseball"></i>
+                <p>Sports</p>
             </div>
-            <div class="product-type flex">  
+            <div class="product-type flex" (click)="filterProducts('camera')" [ngClass]="{'activated-category': selectedCategory === 'camera'}">  
                 <i class="fa-solid fa-camera"></i>
                 <p>Camera</p>
             </div>
-            <div class="product-type flex">  
-                <i class="fa-solid fa-headphones"></i>
-                <p>headphone</p>
+            <div class="product-type flex" (click)="filterProducts('pets')" [ngClass]="{'activated-category': selectedCategory === 'pets'}">  
+                <i class="fa-solid fa-paw"></i>
+                <p>Pets</p>
             </div>
-            <div class="product-type flex">  
+            <div class="product-type flex" (click)="filterProducts('gaming')" [ngClass]="{'activated-category': selectedCategory === 'gaming'}">  
                 <i class="fa-solid fa-gamepad"></i>
                 <p>Gaming</p>
+            </div>
+        </div>
+
+        <div class="porduct-card-container flex">
+            <div class="product-card" *ngFor="let product of filteredProducts; let i = index">
+                <div class="product-image-container" (click)="toggleCartVisibility(i)">
+                    <img [src]="product.image">
+                    <div class="add-cart" (click)="!product.inStock ? null : addToCart(product)"  [ngClass]="{'disabled-btn': !product.inStock}"  *ngIf="selectedProductIndex === i">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                    </div>
+                    <div class="wishlist" >
+                        <i class="fa-heart"
+                            [class.fa-regular]="!product.isFavorite"
+                            [class.fa-solid]="product.isFavorite"
+                            [class.wishlist-active]="product.isFavorite" 
+                            (click)="toggleWishList(product, i, $event)"></i>
+                    </div>
+                    <div class="product-details">
+                        <a (click)="productDetails($event, product)"><i class="fa-regular fa-eye"></i></a> 
+                    </div>
+                </div>
+                <p>{{product.name}}</p>
+                <div class="price flex">
+                    <div class="currency">
+                        ${{product.price}}
+                    </div>
+                    <div class="original-price">
+                        {{product.originalPrice}}
+                    </div>
+                </div>
+                <div class="rating">
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                        <span *ngIf="i < product.ratings">★</span>
+                        <span *ngIf="i >= product.ratings">☆</span>
+                    </span>
+                </div>
             </div>
         </div>
     </div>

@@ -48,8 +48,9 @@ a{
 }
 
 .porduct-card-container{
-  gap: 26px;
+  gap: 30px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 .product-card{
   margin-top: 60px;
@@ -142,4 +143,9 @@ a {
 
 .wishlist-active {
   color: red;
+}
+
+.activated-category{
+  background-color: #DB4444;
+  color: white;
 }

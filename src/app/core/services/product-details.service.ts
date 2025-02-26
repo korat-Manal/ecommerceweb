@@ -14,6 +14,16 @@ export class ProductDetailsService {
   }
 
   getProduct(){
-    return this.selectedProduct || JSON.parse(localStorage.getItem('selectedProduct') || '{}');
+    if (this.selectedProduct) {
+      return this.selectedProduct;
+    }
+
+    try {
+      const storedProduct = localStorage.getItem('selectedProduct');
+      return storedProduct ? JSON.parse(storedProduct) : null;
+    } catch (error) {
+      console.error('Error parsing product from localStorage:', error);
+      return null;
+    }
   }
 }

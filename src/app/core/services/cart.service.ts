@@ -31,14 +31,14 @@ export class CartService {
 
     if (existingItem) {
       
-      if (existingItem.quantity >= 5) {
+      if (existingItem.quantity + product.quantity >= 5) {
         this.toastr.warning('You cannot add more than 5 of this item!', 'Limit Reached');
         return;
       }
-      existingItem.quantity += 1;
+      existingItem.quantity +=  product.quantity;;
       
     } else {
-      product.quantity = 1;
+      product.quantity = product.quantity || 1;
 
       if (typeof product.price === 'string') {
         product.price = parseFloat(product.price.replace('$', ''));
@@ -47,8 +47,7 @@ export class CartService {
       this.cartItems.push(product);
     }
 
-    this.toastr. success('Added to cart','Succuess')
-    // this.updateTotals();
+    this.toastr. success('Added to cart','Succuess');
     this.saveCart();
   }
 

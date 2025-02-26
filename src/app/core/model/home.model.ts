@@ -5,6 +5,7 @@ export interface Banner {
   link: string;
 }
 export interface BestSeller{
+  category: string;
   image: string;
   name: string;
   info: string;

@@ -51,7 +51,10 @@
   color: white;
   text-shadow: 1px 1px 2px black;
 }
-
+.filtered-hero-products{
+  margin-inline: 135px;
+  margin-bottom: 60px;
+}
 .banner-content h1 {
   max-width: 294px;
   font-size: 48px;

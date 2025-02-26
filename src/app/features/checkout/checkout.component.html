@@ -76,8 +76,8 @@
         <div class="items"  *ngFor="let item of cartItems">
             <div class="item">
                 <img [src]="item.image">
-                <span>{{ item.name }}</span>
-                <span>${{ item.price }}</span>
+                <span>{{ item.name }} x {{ item.quantity }}</span>
+                <span>${{ item.price * item.quantity }}</span>
             </div>
         </div>
         <hr>

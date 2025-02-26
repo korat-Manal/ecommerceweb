@@ -25,17 +25,39 @@ export class CheckoutComponent implements OnInit {
   constructor(private fb: FormBuilder,private router:Router, private cartService: CartService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    const checkout = this.cartService.getCheckoutData();
-    if (checkout) {
+    // const checkout = this.cartService.getCheckoutData();
+    // if (checkout) {
+    //   this.cartItems = checkout.cartItems || [];
+    //   this.subTotalPrice = checkout.subTotal || 0;
+    //   this.shippingCost = checkout.shipping || 0;
+    //   this.grandTotalPrice = checkout.grandTotal || 0;
+
+    //   this.subTotalPrice = Number(localStorage.getItem('subTotalPrices')) || 0;
+    //   this.shippingCost = Number(localStorage.getItem('shippingCosts')) || 0;
+    //   this.grandTotalPrice = Number(localStorage.getItem('grandTotalPrices')) || 0; 
+    // }
+
+    const buyNowData = localStorage.getItem('buyNowProduct');
+
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as any;
+
+    if (buyNowData) {
+      const { product, quantity } = JSON.parse(buyNowData);
+      this.cartItems = [{ ...product, quantity }];
+      this.subTotalPrice = product.price * quantity;
+  
+      // Clear buyNowProduct after loading it
+      localStorage.removeItem('buyNowProduct');
+    } else {
+      // Load cart data normally if not from "Buy Now"
+      const checkout = this.cartService.getCheckoutData();
       this.cartItems = checkout.cartItems || [];
       this.subTotalPrice = checkout.subTotal || 0;
-      this.shippingCost = checkout.shipping || 0;
-      this.grandTotalPrice = checkout.grandTotal || 0;
-
-      this.subTotalPrice = Number(localStorage.getItem('subTotalPrices')) || 0;
-      this.shippingCost = Number(localStorage.getItem('shippingCosts')) || 0;
-      this.grandTotalPrice = Number(localStorage.getItem('grandTotalPrices')) || 0; 
     }
+  
+    this.shippingCost = this.subTotalPrice < 500 ? 10 : 0;
+    this.grandTotalPrice = this.subTotalPrice + this.shippingCost;
 
     this.currentDetails = this.fb.group({
       name: new FormControl('', Validators.required),
@@ -71,12 +93,12 @@ export class CheckoutComponent implements OnInit {
     this.checkoutData.push(order);
     localStorage.setItem('checkoutdata', JSON.stringify(this.checkoutData));
     this.toastr.success('Order is placed successfully', 'Success');
+      
     setTimeout(()=>{
       this.router.navigate(['/home'])
     },1000);
     
     this.currentDetails.reset();
-
     this.cartService.clearCart();
   }
 }

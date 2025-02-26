@@ -65,7 +65,7 @@
                       <i class="fa-solid fa-plus"></i>
                     </button>
                   </div>
-                <button class="buy-now" (click)="addToCart(product)" [disabled]="!product.inStock" [ngClass]="{'disabled-btn': !product.inStock}">Buy Now</button>
+                <button class="buy-now" (click)="buyNow()" [disabled]="!product.inStock" [ngClass]="{'disabled-btn': !product.inStock}">Buy Now</button>
                 <button class="wishlist"  (click)="toggleWishList(product, $event)">
                     <i class="fa-heart"
                             [class.fa-regular]="!product.isFavorite"

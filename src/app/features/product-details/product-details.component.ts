@@ -3,6 +3,7 @@ import { ProductDetailsService } from '../../core/services/product-details.servi
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../core/services/cart.service';
 import { WishlistService } from '../../core/services/wishlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -18,7 +19,7 @@ export class ProductDetailsComponent implements OnInit{
   isPlusActive: boolean = false;
   isMinusActive: boolean = false;
 
-  constructor(private productDetailsService: ProductDetailsService, private cartService: CartService, private wishlistService: WishlistService){}
+  constructor(private productDetailsService: ProductDetailsService, private router: Router, private wishlistService: WishlistService){}
 
   ngOnInit(): void {
     this.product = this.productDetailsService.getProduct();
@@ -49,9 +50,15 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
   
-  addToCart(product: any){  
-    if (!product.inStock) return;
-    this.cartService.addToCart({ ...this.product, quantity: this.quantity });
+  buyNow(){
+    if (!this.product.inStock) return;
+
+    localStorage.setItem('buyNowProduct', JSON.stringify({
+      product: this.product,
+      quantity: this.quantity
+    }));
+
+    this.router.navigate(['/home/checkout']);
   }
 
   toggleWishList(product: any, event: Event){
