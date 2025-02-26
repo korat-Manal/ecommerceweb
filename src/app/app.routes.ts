@@ -12,7 +12,7 @@ import { WishlistComponent } from './features/wishlist/wishlist.component';
 import { HomeComponent } from './features/home/home.component';
 import { CheckoutComponent } from './features/checkout/checkout.component'; 
 import { ProductDetailsComponent } from './features/product-details/product-details.component';
-
+import { authGuard } from './core/Auth/auth.guard';
 
 export const routes: Routes = [
     {path: 'nav-bar', component: NavBarComponent},
@@ -21,7 +21,7 @@ export const routes: Routes = [
         { path: 'manage-user', component: ManageUserComponent },
         { path: 'cart', component: CartComponent},
         { path:'wishlist', component: WishlistComponent},
-        { path:'checkout', component: CheckoutComponent},
+        { path:'checkout', component: CheckoutComponent, canActivate: [authGuard]},
         { path:'productDetails', component: ProductDetailsComponent }
     ]},
     {path: 'about',component: AboutComponent },

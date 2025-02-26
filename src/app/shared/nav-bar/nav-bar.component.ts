@@ -60,7 +60,7 @@ export class NavBarComponent implements OnInit {
   }
 
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen = !this.isMenuOpen; 
   }
 
   logout() {

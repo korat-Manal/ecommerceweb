@@ -118,7 +118,7 @@
                 <i class="fa-solid fa-desktop"></i>
                 <p>Computers</p>
             </div>
-            <div class="product-type flex" (click)="filterProducts('sports')">  
+            <div class="product-type flex" (click)="filterProducts('sports')" [ngClass]="{'activated-category': selectedCategory === 'sports'}">  
                 <i class="fa-solid fa-baseball"></i>
                 <p>Sports</p>
             </div>

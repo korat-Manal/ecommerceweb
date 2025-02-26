@@ -29,16 +29,17 @@ export class LoginComponent implements OnInit{
       password: new FormControl()
     });
     const localData = localStorage.getItem('users');
-    console.log('Local storage users:', localData); // Debugging
     if(localData){
       this.storedUser = JSON.parse(localData);
     }else {
       this.storedUser = [];
-      console.log('No users found in localStorage');
     }
   }
 
   login(){
+
+    const fakeToken = '123456789';
+
     if (!this.loginForm.value.email || !this.loginForm.value.password) {
       this.toastr.error('Email and password are required', 'Error');
       return;
@@ -52,9 +53,9 @@ export class LoginComponent implements OnInit{
       this.toastr.success('Login successful', 'Success');
 
       setTimeout(() => {
-        this.authService.login();
+        this.authService.login(fakeToken);
         this.router.navigate(['/home']);
-      }, 1000); // ✅ Delay navigation
+      }, 1000); 
     } else {
       this.toastr.error('Invalid username or password', 'Error');
     } 

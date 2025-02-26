@@ -15,13 +15,19 @@ export class AuthService {
     }
   }
 
-  login() {
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('userToken'); 
+  }
+
+  login(token: string) {
       this.authenticatedSubject.next(true);
+      localStorage.setItem('userToken', token);
   }
 
   logout() {
     // Example logout logic
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('userToken');
     this.authenticatedSubject.next(false);
   }
 

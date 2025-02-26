@@ -50,11 +50,13 @@ a{
 .porduct-card-container{
   gap: 30px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center;  
 }
+
 .product-card{
   margin-top: 60px;
 }
+
 .product-image-container {
   min-width: 270px;
   height: 250px;
