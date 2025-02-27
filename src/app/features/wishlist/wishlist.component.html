@@ -1,6 +1,9 @@
     <div class="wishlist-container">
         <h2 class="wishlist-title">Wishlist </h2>
         <button class="move-all-btn"  (click)="moveAllToCart()">Move All To Bag</button>
+
+        <!-- contains all my products -->
+         
             <div class="product-card-container flex">
                 <div class="product-card" *ngFor="let product of wishList; let i = index">
                     <div class="product-image-container" (click)="toggleCartVisibility(i)" >

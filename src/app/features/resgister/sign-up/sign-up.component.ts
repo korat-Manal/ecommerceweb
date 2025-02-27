@@ -19,6 +19,8 @@ export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
   currentUser!: signUpObj;
 
+  // intializing the form controls
+
   constructor(private fb: FormBuilder, private toastr: ToastrService){
     this.signUpForm = this.fb.group({
       name: new FormControl('', Validators.required),
@@ -52,6 +54,7 @@ export class SignUpComponent implements OnInit {
     this.signupData = localData? JSON.parse(localData) : [];
   }
 
+  // checks if the value are valid or not and if values are valid than stores that data in to local storage
   
   signUp(){
     if(this.signUpForm.invalid){

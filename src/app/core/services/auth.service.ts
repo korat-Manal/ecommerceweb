@@ -15,10 +15,10 @@ export class AuthService {
     }
   }
 
+  //checks if the user is login
   isLoggedIn(): boolean {
     return !!localStorage.getItem('userToken'); 
   }
-
   login(token: string) {
       this.authenticatedSubject.next(true);
       localStorage.setItem('userToken', token);

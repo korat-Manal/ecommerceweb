@@ -21,9 +21,10 @@ export class LoginComponent implements OnInit{
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private toastr: ToastrService){
 
   }
+
+  //intialize form controls and stores data to local storage 
+
   ngOnInit(): void {
-
-
     this.loginForm = this.fb.group({
       email: new FormControl(),
       password: new FormControl()
@@ -35,6 +36,8 @@ export class LoginComponent implements OnInit{
       this.storedUser = [];
     }
   }
+
+  // insert a token with authentication and checks if user is valid or not and stores the data of the currentUser to local Storage
   login(){
 
     const fakeToken = '123456789';
@@ -50,7 +53,7 @@ export class LoginComponent implements OnInit{
     
       localStorage.setItem('currentUser', JSON.stringify(user));
       this.toastr.success('Login successful', 'Success');
-
+       
       setTimeout(() => {
         this.authService.login(fakeToken);
         this.router.navigate(['/home']);

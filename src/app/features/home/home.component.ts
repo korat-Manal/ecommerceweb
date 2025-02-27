@@ -58,9 +58,11 @@ export class HomeComponent implements OnInit{
 
   constructor(private router: Router, private cartService: CartService, private toastr: ToastrService, private wishlistService: WishlistService,private productDetailService: ProductDetailsService) { }
 
+  // updates cart, wishlist and maintain the banner presents in the home component
   ngOnInit() {
     this.updateHomeContent();
     this.filteredProducts = this.bestSeller;
+
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.updateHomeContent();
       this.cartService.getCartItems();
@@ -79,6 +81,7 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  // controls the slider in the explore products section
   previousProduct() {
     if (this.visibleIndex > 0) {
       this.visibleIndex--;
@@ -91,23 +94,27 @@ export class HomeComponent implements OnInit{
     }
   }
 
+  // filter for the menu in hero section
   filterHeroProducts(category: string){
     this.isFilteredProductsVisible = true;
     this.selectedHeroCategory = category;
     this.filteredHeroProducts = this.bestSeller.filter(product => product.category === category);
   }
 
+  // filter for the menu in the main body
   filterProducts(category: string) {
     this.selectedCategory = category;
     this.filteredProducts = this.bestSeller.filter(product => product.category === category);
   }
 
+  //updates the users wishlist products
   toggleWishList(product: any, index: number, event: Event){
     event.stopPropagation();
     product.isFavorite = !product.isFavorite;
     this.wishlistService.toggleWishlistItem(product);
   }
 
+  // redirects to products detail section and avoid extra triggering of the toggleCartVisibility
   productDetails(event: Event, product: any) {
     event.stopPropagation();
     
@@ -121,22 +128,27 @@ export class HomeComponent implements OnInit{
     this.router.navigate(["/home/productDetails"]);
   }
 
+  // show or hide all the products as per the click
   toggleProducts() {
     this.showAllProducts = !this.showAllProducts;
   }
 
+  //triggers toggleCartsVisibility
   toggleCartVisibility(index: number) {
     this.selectedProductIndex = this.selectedProductIndex === index ? null : index;
   }
 
+  // add product using cartService
   addToCart(product: any){  
     this.cartService.addToCart(product);
   }
 
+  // updates the changes of the home component
   private updateHomeContent() {
     this.showHomeContent = this.router.url === '/home';
   }
   
+  //manages slider of the banner in home component
   showBanner(index: number): void {
     this.currentBannerIndex = index;
   }

@@ -24,23 +24,21 @@ export class WishlistComponent implements OnInit{
     });
   }
 
+  // Prevents triggering toggleCartVisibility and allowing user remove item from wishlist
   removeFromWishlist(product: any, event: Event) {
-    event.stopPropagation(); // Prevents triggering toggleCartVisibility
-  
-    console.log("Removing from wishlist:", product); // Debugging log
-  
+    event.stopPropagation();
     this.wishlistService.removeFromWishlist(product);
   }
   
   toggleCartVisibility(index: number) {
-    this.selectedProductIndex = this.selectedProductIndex === index ? null : index;
+    this.selectedProductIndex = this.selectedProductIndex === index ? null : index;// triggers toggleCartVisibility
   }
 
   addToCart(product: any){  
-    console.log("Adding to Cart from Wishlist:", product);
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(product); // add items to cart
   }
 
+  // move all items to carts except which are not inStock
   moveAllToCart() {
     this.wishList
     .filter(product => product.inStock)

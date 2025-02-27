@@ -46,22 +46,25 @@ export class NavBarComponent implements OnInit {
     });
   }
 
+  // checks if we are in home component and make appropriate functionality visible accordingly
   private updateIsHome() {
     this.isHome = this.router.url.startsWith('/home');
   }
 
   profileMenu(): void {
-    this.isOpen = !this.isOpen;
+    this.isOpen = !this.isOpen;// profile menu pops-up
   }
 
   navigateTo(route: string) {
-    this.isOpen = false;
-    this.router.navigate([route]);
+    this.isOpen = false; // closes menu
+    this.router.navigate([route]); // redirect
   }
 
   toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen; 
+    this.isMenuOpen = !this.isMenuOpen; //main menu pops-up
   }
+
+  //make changes in all the authentication related services or gaurd
 
   logout() {
     this.isOpen = false;

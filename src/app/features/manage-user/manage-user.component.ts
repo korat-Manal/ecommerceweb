@@ -17,6 +17,8 @@ export class ManageUserComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private toastr: ToastrService) {}
 
+  // intialize the form control and validations and updates the user all information in the localstorage, for example: password.
+
   ngOnInit(): void {
 
     const usersData = localStorage.getItem('users');
@@ -43,6 +45,8 @@ export class ManageUserComponent implements OnInit {
     });
   }
 
+  // takes the changes from the user and updates in local storage original data and checks if the credentials are valid or not
+ 
   onSubmit() {
     if (this.editForm.invalid) {
       this.toastr.error("Invalid details", 'Error');

@@ -6,7 +6,9 @@
     <div class="signup-container">
         <h2>Create an account</h2>
         <p>Enter your details below</p>
-      
+        
+        <!--sign up validation -->
+        
         <form [formGroup] ="signUpForm">
           <input type="text" placeholder="Name" name="name" required formControlName="name">
           @if(signUpForm.get('name')?.touched){

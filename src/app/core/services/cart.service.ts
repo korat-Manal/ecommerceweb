@@ -24,6 +24,7 @@ export class CartService {
     }
   }
 
+  //adds new item to cart and if the item is alerady added than increase the quantity of the product in the cart
   addToCart(product: any) {
 
 
@@ -51,12 +52,14 @@ export class CartService {
     this.saveCart();
   }
 
+  //remove the product from the cart
   removeCartItem(index: number) {
     this.cartItems.splice(index, 1);
     this.updateTotals();
     this.saveCart();
   }
-
+ 
+  //maintains the quantity of the products
   increaseQuantity(index: number) {
     if (this.cartItems[index].quantity < 5) {
       this.cartItems[index].quantity += 1;
@@ -73,6 +76,7 @@ export class CartService {
     }
   }
 
+  //calculate the total price of the products
   getTotalPrice(): number {
     return this.cartItems.reduce((total, item) => {
       const itemPrice = Number(item.price) || 0;
@@ -80,6 +84,7 @@ export class CartService {
     }, 0);
   }
 
+  //calculate the quantity of the products
   getCartItems() {
     return this.cartItems.map(item => ({
       ...item,
@@ -87,10 +92,12 @@ export class CartService {
     }));
   }
   
+  //gets the count in the cart
   getCartCount() {
     return this.cartCount$;
   }
   
+  // load the product in the localstorage
   saveCart(){
     localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     this.cartCount.next(this.getTotalItemCount());  
@@ -100,6 +107,7 @@ export class CartService {
     return this.cartItems.reduce((total, item) => total + item.quantity, 0);
   }
 
+  // keep updating all the 
   updateTotals() {
     this.subTotalPrice = this.getTotalPrice();
     this.shippingCost = this.subTotalPrice < 500 ? 10 : 0;
@@ -110,6 +118,7 @@ export class CartService {
     localStorage.setItem('grandTotalPrices', this.grandTotalPrice.toString());
   }
 
+  //gets the data which is required when user proceed to chekout
   getCheckoutData(): any {
     return {
       cartItems: this.cartItems,
@@ -118,6 +127,7 @@ export class CartService {
       grandTotal: this.grandTotalPrice
     };
   }
+  // clears the cart when it is called
   clearCart() {
     this.cartItems = [];
     this.cartCount.next(0);

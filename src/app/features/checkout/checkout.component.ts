@@ -24,18 +24,9 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private fb: FormBuilder,private router:Router, private cartService: CartService, private toastr: ToastrService) {}
 
+  // accepts the product from the differnt components and saves the final order of the user woth all the required information
+  // and also intiliaze the formcontrols and validations
   ngOnInit(): void {
-    // const checkout = this.cartService.getCheckoutData();
-    // if (checkout) {
-    //   this.cartItems = checkout.cartItems || [];
-    //   this.subTotalPrice = checkout.subTotal || 0;
-    //   this.shippingCost = checkout.shipping || 0;
-    //   this.grandTotalPrice = checkout.grandTotal || 0;
-
-    //   this.subTotalPrice = Number(localStorage.getItem('subTotalPrices')) || 0;
-    //   this.shippingCost = Number(localStorage.getItem('shippingCosts')) || 0;
-    //   this.grandTotalPrice = Number(localStorage.getItem('grandTotalPrices')) || 0; 
-    // }
 
     const buyNowData = localStorage.getItem('buyNowProduct');
 
@@ -73,6 +64,8 @@ export class CheckoutComponent implements OnInit {
     this.checkoutData = localData ? JSON.parse(localData) : [];
   }
 
+  // checks all the information are valid or not
+  // if it is valid than allow the user to order the product the product and soters the value in local storage
   placeOrder() {
     if (this.currentDetails.invalid) {
       this.toastr.error('Details are invalid', 'Error'); 
@@ -87,7 +80,7 @@ export class CheckoutComponent implements OnInit {
       subTotal: this.subTotalPrice,
       shipping: this.shippingCost,
       grandTotal: this.grandTotalPrice,
-      orderDate: new Date().toISOString(), // Optional: Add timestamp for order tracking
+      orderDate: new Date().toISOString(), 
     };
 
     this.checkoutData.push(order);

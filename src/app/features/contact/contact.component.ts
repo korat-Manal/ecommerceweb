@@ -19,6 +19,8 @@ export class ContactComponent implements OnInit{
   currentMessage!: FormGroup;
   constructor(private fb: FormBuilder, private toastr: ToastrService){
   }
+
+  // intializing form controls and validations of the page and stores users message in the local storage
   ngOnInit(): void{
     this.currentMessage = this.fb.group({
       name: new FormControl('',Validators.required),
@@ -31,6 +33,7 @@ export class ContactComponent implements OnInit{
     this.contactData = localData ? JSON.parse(localData): [];
     }
 
+  // checks if values of the form are valid or not anf if the are valid than store the users message in localstorage
   onSubmit(){
     if(this.currentMessage.invalid){
       this.toastr.error('fill the details properly', 'Error');

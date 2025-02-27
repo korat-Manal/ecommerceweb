@@ -8,22 +8,18 @@ export class ProductDetailsService {
 
   constructor() { }
 
+  //loads the data pf selected products to local storage
   setProduct(product: any){
     this.selectedProduct = product;
     localStorage.setItem('selectedProduct', JSON.stringify(product));
   }
 
+  
   getProduct(){
     if (this.selectedProduct) {
       return this.selectedProduct;
     }
-
-    try {
-      const storedProduct = localStorage.getItem('selectedProduct');
-      return storedProduct ? JSON.parse(storedProduct) : null;
-    } catch (error) {
-      console.error('Error parsing product from localStorage:', error);
-      return null;
-    }
+    const storedProduct = localStorage.getItem('selectedProduct');
+    return storedProduct ? JSON.parse(storedProduct) : null;
   }
 }

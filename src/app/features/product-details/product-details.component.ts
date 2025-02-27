@@ -21,11 +21,12 @@ export class ProductDetailsComponent implements OnInit{
 
   constructor(private productDetailsService: ProductDetailsService, private router: Router, private wishlistService: WishlistService){}
 
+  // get the product that the user wants to view
   ngOnInit(): void {
-    this.product = this.productDetailsService.getProduct();
-    console.log("Product details:", this.product);     
+    this.product = this.productDetailsService.getProduct();    
   }
 
+  // quantity button for the user so that they can purchase more than one item easily
   decreaseQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
@@ -40,6 +41,8 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
 
+  // formatting the buttons of plus minus for quantity
+
   activateButton(type: 'plus' | 'minus') {
     if (type === 'plus') {
       this.isPlusActive = true;
@@ -50,6 +53,8 @@ export class ProductDetailsComponent implements OnInit{
     }
   }
   
+  // allows the order to checkout the product and stores the quantity and name of the product to localstorage so that it could be passed further
+
   buyNow(){
     if (!this.product.inStock) return;
 
@@ -60,6 +65,8 @@ export class ProductDetailsComponent implements OnInit{
 
     this.router.navigate(['/home/checkout']);
   }
+
+  // user can add or remove the products to wishlist 
 
   toggleWishList(product: any, event: Event){
     event.stopPropagation();
