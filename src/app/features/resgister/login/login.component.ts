@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit{
       this.storedUser = [];
     }
   }
-
   login(){
 
     const fakeToken = '123456789';

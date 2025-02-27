@@ -1,4 +1,4 @@
-@import 'ngx-toastr/toastr';
+@import "ngx-toastr/toastr";
 @font-face {
   font-family: "Poppins";
   src: url("/Poppins/Poppins-Regular.ttf") format("truetype");
@@ -25,69 +25,72 @@ h1 {
 h2 {
   font-weight: 600;
 }
-a{
+a {
   color: black;
 }
 
 /* **************** */
+
+
 .currency {
   font-weight: 500;
   font-size: 1rem;
   line-height: 24px;
   color: #db4444;
 }
-.price{
-  gap:12px;
+.price {
+  gap: 12px;
 }
-.original-price{
+.original-price {
   font-weight: 500;
   font-size: 1rem;
   line-height: 24px;
   color: rgb(0, 0, 0, 0.5);
-  text-decoration:line-through;
+  text-decoration: line-through;
 }
-
-.porduct-card-container{
+.porduct-card-container {
   gap: 30px;
   flex-wrap: wrap;
-  justify-content: center;  
+  justify-content: center;
 }
-
-.product-card{
+.product-card {
   margin-top: 60px;
 }
-
 .product-image-container {
   min-width: 270px;
   height: 250px;
-  background-color: #F5F5F5;
-  display: flex; /* Enables flexbox */
-  justify-content: center; /* Centers horizontally */
-  align-items: center; /* Centers vertically */
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
-
-.add-cart{
+.add-cart {
   position: absolute;
   bottom: 0;
   width: 270px;
   height: 41px;
   background-color: black;
-  color: white ;
+  color: white;
   text-align: center;
   padding-top: 8px;
   cursor: pointer;
 }
 .product-image-container img {
-  max-width: 100%; 
-  max-height: 100%; 
-  object-fit: contain; 
-
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 .rating {
-  font-size: 20px; /* Adjust star size */
-  color: gold; /* Default color for stars */
+  font-size: 20px;
+  color: gold;
 }
+.reviews-text {
+  font-weight: 600;
+  font-size: 14px;
+  color: rgb(0, 0, 0, 0.5);
+}
+
 /* ************ */
 .flex {
   display: flex;
@@ -109,13 +112,13 @@ a {
   font-size: 0.75rem;
   text-align: left;
 }
-.decoration{
+.decoration {
   width: 20px;
   height: 40px;
   background-color: #db4444;
   border-radius: 4px;
 }
-.small-text{
+.small-text {
   font-weight: 600;
   font-size: 16px;
   color: #db4444;
@@ -137,17 +140,14 @@ a {
 } */
 /* Default link styles */
 
-
-.disabled-btn{
+.disabled-btn {
   cursor: not-allowed !important;
   opacity: 0.6;
 }
-
 .wishlist-active {
   color: red;
 }
-
-.activated-category{
-  background-color: #DB4444;
+.activated-category {
+  background-color: #db4444;
   color: white;
 }

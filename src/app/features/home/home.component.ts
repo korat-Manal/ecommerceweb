@@ -29,11 +29,11 @@ export class HomeComponent implements OnInit{
   bestSeller: BestSeller[] = [
     {category:'women' ,image: '/img26.png', name:'The north coat',info:'Premium insulated coat designed for ultimate warmth and comfort. Made with high-quality, weather-resistant materials to protect against the elements. Lightweight yet durable, perfect for outdoor adventures or everyday wear.' ,price: '260', originalPrice:'$360', ratings: 4, reviews: 100, inStock:true ,  isFavorite: false},
     {category:'women' ,image: '/img27.png', name:'Gucci duffle bag',info:'Luxury travel bag crafted from high-quality materials with iconic Gucci design. Spacious interior with multiple compartments for organized storage. Durable handles and an adjustable shoulder strap for', price: '960', originalPrice:'$1160', ratings: 3, reviews: 100, inStock:true , isFavorite : false},
-    {category:'home' ,image: '/img29.png', name:'Small BookSelf',info:'Compact and sturdy design, perfect for organizing books, décor, and essentials. Made from high-quality materials for durability and stability. Space-saving solution for home, office, or study rooms. Easy to assemble and stylishly fits any décor.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock:true , isFavorite : false},
-    {category:'pets' ,image: '/img30.png', name:'Breed Dry Dog Food',info:'Nutrient-rich formula tailored for optimal health and energy. Made with high-quality ingredients to support digestion, coat health, and strong muscles. No artificial flavors or preservatives. Perfect for daily feeding and balanced nutrition.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock:false , isFavorite : false},
-    {category:'camera' ,image: '/img31.png', name:'CANON EOS DSLR Camera',info:'High-performance DSLR with advanced imaging technology for stunning photos and videos. Features a powerful sensor, fast autofocus, and versatile lens compatibility. User-friendly controls with built-in Wi-Fi and HD video recording. Perfect for professionals and beginners alike.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock:true , isFavorite : false},
-    {category:'computers' ,image: '/img32.png', name:'ASUS FHD Gaming Laptop',info:'Powerful gaming laptop with a high-refresh-rate Full HD display for smooth visuals. Equipped with a high-performance processor and dedicated GPU for seamless gameplay. Advanced cooling system and RGB-backlit keyboard for an immersive gaming experience. Perfect for gamers and content creators.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock: false , isFavorite : false},
-    {category:'healthCare' ,image: '/img33.png', name:'Curology Product Set ',info:'Customized skincare regimen tailored to your skin’s unique needs. Includes a personalized formula, cleanser, and moisturizer for a complete skincare routine. Dermatologist-designed with high-quality ingredients to target acne, wrinkles, and dark spots. Gentle, effective, and perfect for all skin types.', price: '60',originalPrice:'', ratings: 2, reviews: 100, inStock:true , isFavorite : false},
+    {category:'home' ,image: '/img29.png', name:'Small BookSelf',info:'Compact and sturdy design, perfect for organizing books, décor, and essentials. Made from high-quality materials for durability and stability. Space-saving solution for home, office, or study rooms. Easy to assemble and stylishly fits any décor.', price: '360',originalPrice:'$486', ratings: 2, reviews: 100, inStock:true , isFavorite : false},
+    {category:'pets' ,image: '/img30.png', name:'Breed Dry Dog Food',info:'Nutrient-rich formula tailored for optimal health and energy. Made with high-quality ingredients to support digestion, coat health, and strong muscles. No artificial flavors or preservatives. Perfect for daily feeding and balanced nutrition.', price: '100',originalPrice:'$200', ratings: 3, reviews: 100, inStock:false , isFavorite : false},
+    {category:'camera' ,image: '/img31.png', name:'CANON EOS DSLR Camera',info:'High-performance DSLR with advanced imaging technology for stunning photos and videos. Features a powerful sensor, fast autofocus, and versatile lens compatibility. User-friendly controls with built-in Wi-Fi and HD video recording. Perfect for professionals and beginners alike.', price: '360',originalPrice:'$500', ratings: 4, reviews: 95, inStock:true , isFavorite : false},
+    {category:'computers' ,image: '/img32.png', name:'ASUS FHD Gaming Laptop',info:'Powerful gaming laptop with a high-refresh-rate Full HD display for smooth visuals. Equipped with a high-performance processor and dedicated GPU for seamless gameplay. Advanced cooling system and RGB-backlit keyboard for an immersive gaming experience. Perfect for gamers and content creators.', price: '700',originalPrice:'$1000', ratings: 5, reviews: 325, inStock: false , isFavorite : false},
+    {category:'healthCare' ,image: '/img33.png', name:'Curology Product Set ',info:'Customized skincare regimen tailored to your skin’s unique needs. Includes a personalized formula, cleanser, and moisturizer for a complete skincare routine. Dermatologist-designed with high-quality ingredients to target acne, wrinkles, and dark spots. Gentle, effective, and perfect for all skin types.', price: '60',originalPrice:'$150', ratings: 4, reviews: 145, inStock:true , isFavorite : false},
     {category:'toys' ,image: '/img34.png', name:'Kids Electric Car',info:'Fun and safe ride-on car with realistic design and smooth driving experience. Features rechargeable battery, LED lights, music, and parental remote control for added safety. Durable construction with comfortable seating, perfect for indoor and outdoor adventures.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock:true , isFavorite : false},
     {category:'sports' ,image: '/img35.png', name:'Jr. Zoom Soccer Cleats',info:'Lightweight and durable cleats designed for speed and agility on the field. Features a cushioned insole and responsive Zoom Air unit for comfort and performance. High-traction outsole for superior grip on various playing surfaces. Perfect for young athletes looking to elevate their game.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock:false , isFavorite : false},
     {category:'gaming' ,image: '/img36.png', name:'GP11 Shooter USB Gamepad',info:'Ergonomic and responsive gamepad designed for precision gaming. Features a comfortable grip, dual analog sticks, and pressure-sensitive buttons for enhanced control. Plug-and-play USB connectivity for seamless compatibility with PC and gaming consoles. Perfect for FPS, racing, and action games.', price: '360',originalPrice:'', ratings: 2, reviews: 100, inStock:false , isFavorite : false},
@@ -52,8 +52,9 @@ export class HomeComponent implements OnInit{
   selectedCategory: string = '';
   filteredHeroProducts: any[]= [];
   selectedHeroCategory: string = '';
-
   isFilteredProductsVisible: boolean = false
+  visibleIndex: number = 0;
+  maxVisible = 4;
 
   constructor(private router: Router, private cartService: CartService, private toastr: ToastrService, private wishlistService: WishlistService,private productDetailService: ProductDetailsService) { }
 
@@ -77,6 +78,19 @@ export class HomeComponent implements OnInit{
       });
     });
   }
+
+  previousProduct() {
+    if (this.visibleIndex > 0) {
+      this.visibleIndex--;
+    }
+  }
+
+  nextProduct() {
+    if (this.visibleIndex < this.bestSeller.length - this.maxVisible) {
+      this.visibleIndex++;
+    }
+  }
+
   filterHeroProducts(category: string){
     this.isFilteredProductsVisible = true;
     this.selectedHeroCategory = category;

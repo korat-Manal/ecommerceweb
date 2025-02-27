@@ -34,6 +34,7 @@
   width: 100%;
   max-width: 892px;
   overflow: hidden;
+  
 }
 
 .banner {
@@ -42,6 +43,7 @@
   background-position: center;
   object-fit: contain;
   transition: background-image 0.5s ease;
+  margin-top: 40px;
 }
 
 .banner-content {
@@ -153,12 +155,12 @@
   color: white;
 }
 
-.best-seller-products{
+.products-section{
   padding: 80px 0 70px 0;
   margin-inline: 135px;
 }
 
-.best-seller-header{
+.products-header{
   flex-direction: column;
   align-items: flex-start;
   gap:20px;
@@ -194,4 +196,10 @@
   
   background-color: white;
   border-radius: 100%;
+}
+.header-button button{
+  padding: 16px;
+  border-radius: 100%;
+  border: none;
+  margin: 4px;
 }

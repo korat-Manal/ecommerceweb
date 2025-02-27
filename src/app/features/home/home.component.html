@@ -21,10 +21,6 @@
                     <a (click)="filterHeroProducts('home')">Home & lifeStyle</a>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
-                <!-- <div class="hero-section-category flex">
-                    <a>Medicine</a>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div> -->
                 <div class="hero-section-category flex">
                     <a (click)="filterHeroProducts('sports')">Sports & OutDoor</a>
                     <i class="fa-solid fa-chevron-right"></i>
@@ -90,8 +86,8 @@
                 </div>
                 <div class="rating">
                     <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-                        <span *ngIf="i < product.ratings">★</span>
-                        <span *ngIf="i >= product.ratings">☆</span>
+                        <span *ngIf="i < product.ratings"><img src="img44.png"></span>
+                        <span *ngIf="i >= product.ratings"><img src="img45.png"></span>
                     </span>
                 </div>
             </div>
@@ -165,17 +161,18 @@
                 </div>
                 <div class="rating">
                     <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-                        <span *ngIf="i < product.ratings">★</span>
-                        <span *ngIf="i >= product.ratings">☆</span>
+                        <span *ngIf="i < product.ratings"><img src="img44.png"></span>
+                        <span *ngIf="i >= product.ratings"><img src="img45.png"></span>
                     </span>
+                    <span class="reviews-text">({{product.reviews}})</span>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="best-seller-products">
+    <div class="products-section">
         <div class="header-container flex">
-            <div class="best-seller-header flex">
+            <div class="products-header flex">
                 <div class="small-text flex">
                     <div class="decoration">
         
@@ -184,6 +181,7 @@
                 </div>
                 <h1>Best Selling Product</h1>
             </div>
+           
             <button class="primary-button" (click)="toggleProducts()">
                 {{ showAllProducts ? 'Show Less' : 'View all products' }}
             </button>
@@ -218,9 +216,71 @@
                 </div>
                 <div class="rating">
                     <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-                        <span *ngIf="i < product.ratings">★</span>
-                        <span *ngIf="i >= product.ratings">☆</span>
+                        <span *ngIf="i < product.ratings"><img src="img44.png"></span>
+                        <span *ngIf="i >= product.ratings"><img src="img45.png"></span>
                     </span>
+                    <span class="reviews-text">({{product.reviews}})</span> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="products-section">
+        <div class="header-container flex">
+            <div class="products-header flex">
+                <div class="small-text flex">
+                    <div class="decoration">
+        
+                    </div>
+                    Our products
+                </div>
+                <h1>Explore Our Products</h1>
+            </div>
+
+            <div class="header-button">
+                <button class="previous-button" (click)="previousProduct()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="next-button" (click)="nextProduct()" >
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+            <!-- <button class="primary-button" (click)="toggleProducts()">
+                {{ showAllProducts ? 'Show Less' : 'View all products' }}
+            </button> -->
+        </div>       
+        <div class="porduct-card-container flex">
+            <div class="product-card" *ngFor="let product of bestSeller.slice(visibleIndex, visibleIndex + maxVisible); let i = index">
+                <div class="product-image-container" (click)="toggleCartVisibility(i)">
+                    <img [src]="product.image">
+                    <div class="add-cart" (click)="!product.inStock ? null : addToCart(product)"  [ngClass]="{'disabled-btn': !product.inStock}"  *ngIf="selectedProductIndex === i">
+                        <i class="fa-solid fa-cart-shopping"></i> Add to cart
+                    </div>
+                    <div class="wishlist" >
+                        <i class="fa-heart"
+                            [class.fa-regular]="!product.isFavorite"
+                            [class.fa-solid]="product.isFavorite"
+                            [class.wishlist-active]="product.isFavorite" 
+                            (click)="toggleWishList(product, i, $event)"></i>
+                    </div>
+                    <div class="product-details">
+                        <a (click)="productDetails($event, product)"><i class="fa-regular fa-eye"></i></a> 
+                    </div>
+                </div>
+                <p>{{product.name}}</p>
+                <div class="price flex">
+                    <div class="currency">
+                        ${{product.price}}
+                    </div>
+                    <div class="original-price">
+                        {{product.originalPrice}}
+                    </div>
+                </div>
+                <div class="rating">
+                    <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                        <span *ngIf="i < product.ratings"><img src="img44.png"></span>
+                        <span *ngIf="i >= product.ratings"><img src="img45.png"></span>
+                    </span>
+                    <span class="reviews-text">({{product.reviews}})</span>
                 </div>
             </div>
         </div>

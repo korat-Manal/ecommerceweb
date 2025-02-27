@@ -15,20 +15,20 @@ import { ProductDetailsComponent } from './features/product-details/product-deta
 import { authGuard } from './core/Auth/auth.guard';
 
 export const routes: Routes = [
-    {path: 'nav-bar', component: NavBarComponent},
-    {path: 'footer', component:FooterComponent},
-    {path: 'home', component: HomeComponent,  children: [
+    { path: 'nav-bar', component: NavBarComponent},
+    { path: 'footer', component:FooterComponent},
+    { path: 'home', component: HomeComponent,  children: [
         { path: 'manage-user', component: ManageUserComponent },
-        { path: 'cart', component: CartComponent},
-        { path:'wishlist', component: WishlistComponent},
+        { path: 'cart', component: CartComponent, canActivate: [authGuard]},
+        { path:'wishlist', component: WishlistComponent, canActivate: [authGuard]},
         { path:'checkout', component: CheckoutComponent, canActivate: [authGuard]},
         { path:'productDetails', component: ProductDetailsComponent }
     ]},
-    {path: 'about',component: AboutComponent },
-    {path: 'contact',component: ContactComponent},
-    {path: 'sign-up', component: SignUpComponent},
-    {path: 'login', component: LoginComponent},
-    {path: 'manage-user', component: ManageUserComponent},
+    { path: 'about',component: AboutComponent },
+    { path: 'contact',component: ContactComponent},
+    { path: 'sign-up', component: SignUpComponent},
+    { path: 'login', component: LoginComponent},
+    { path: 'manage-user', component: ManageUserComponent},
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: WildcardComponent } 
 ];

@@ -19,8 +19,8 @@
                     </div>
                     <div class="rating">
                         <span *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-                            <span *ngIf="i < product.ratings">★</span>
-                            <span *ngIf="i >= product.ratings">☆</span>
+                            <span *ngIf="i < product.ratings"><img src="img44.png"></span>
+                            <span *ngIf="i >= product.ratings"><img src="img45.png"></span>
                         </span>
                     </div>
                 </div>
