@@ -118,7 +118,7 @@ export class CartService {
     localStorage.setItem('grandTotalPrices', this.grandTotalPrice.toString());
   }
 
-  //gets the data which is required when user proceed to chekout
+  //gets the data which is required when user proceed to checkout
   getCheckoutData(): any {
     return {
       cartItems: this.cartItems,

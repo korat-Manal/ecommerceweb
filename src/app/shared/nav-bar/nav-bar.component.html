@@ -23,10 +23,15 @@
       </div>
       <div class="nav-search-container flex">
         <div class="nav-search flex">
-          <input type="text" placeholder="What are you looking for?" />
-          <button class="flex">
-            <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" [(ngModel)]="searchQuery" placeholder="What are you looking for?"  (input)="onSearch()"  />
+          <button (click)="searchProduct()" class="flex">
+            <i class="fa-solid fa-magnifying-glass" ></i>
           </button>
+          <ul *ngIf="showDropdown" class="search-dropdown">
+            <li *ngFor="let product of filteredProducts" (click)="selectProduct(product)">
+              {{ product.name }}
+            </li>
+          </ul>
         </div>
         <ng-container *ngIf="isHome">
           <div class="home-icons flex">

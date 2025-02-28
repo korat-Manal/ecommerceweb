@@ -164,6 +164,29 @@ button i {
   opacity: 1;
   transform: translateY(0);
 }
+
+.search-dropdown {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  top:16%;
+  max-height: 200px;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 10;
+}
+
+.search-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-dropdown li:hover {
+  background: #f1f1f1;
+}
+
 @media screen and (max-width: 953px){
   .nav-header{
     width: 100%;

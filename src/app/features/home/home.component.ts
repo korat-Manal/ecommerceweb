@@ -63,6 +63,9 @@ export class HomeComponent implements OnInit{
     this.updateHomeContent();
     this.filteredProducts = this.bestSeller;
 
+      // Send product data to ProductService
+    this.productDetailService.setProducts(this.bestSeller);
+
     this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
       this.updateHomeContent();
       this.cartService.getCartItems();
